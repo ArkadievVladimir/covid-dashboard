@@ -1,0 +1,13 @@
+.copyright {
+    width: 30%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright span {
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    color: #bdbdbd;
+}

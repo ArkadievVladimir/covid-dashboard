@@ -1,0 +1,10 @@
+.header-title-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #bdbdbd;
+    font-size: 28px;
+    font-family: Arial, sans-serif;
+}

@@ -1,0 +1,22 @@
+.jh-logo-wrapper {
+    width: 10%;
+    height: 100%;
+}
+
+.jh-logo-wrapper a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jh-logo-img {
+    width: 25%;
+    height: 50%;
+}
+
+.jh-logo-wrapper .jh-logo-img:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,14 @@
+.git-link-wrapper {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.git-link-wrapper a {
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    color: #bdbdbd;
+    text-decoration: none;
+}
