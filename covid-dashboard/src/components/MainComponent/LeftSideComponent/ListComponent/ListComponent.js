@@ -1,27 +1,29 @@
 import React from 'react';
 import './ListComponent.css';
 
-const ListComponent = () => {
+const ListComponent = ({countries}) => {
+    const countriesList = countries.map((item) => {
+    const state = {
+        id: item.id,
+        countryTotalCases: item.TotalConfirmed,
+        countryName: item.country,
+        ...item
+    }
+
+      return (
+        <li key={state.id} className="cases-wrapper">
+          <span className="country-stat-wrapper">{state.countryTotalCases}</span>
+          <span className="country-wrapper">{state.countryName}</span>
+          <div className="country-flag-wrapper"><img src={state.flag} alt="flag" className="country-flag"></img></div>
+        </li>
+      )   
+  });
     return (
         <div className="list-wrapper">
             <h2>Cases by Country/Region/Sovereignity</h2>
-            <div className="lists-wrapper">
-                <ul className="country-stat-wrapper">
-                    <li>10 000 111</li>
-                    <li>USA</li>
-                    <li><span>f</span></li>
-                </ul>
-                <ul className="country-stat-wrapper">
-                    <li>7 500 600</li>
-                    <li>India</li>
-                    <li><span>f</span></li>
-                </ul>
-                <ul className="country-stat-wrapper">
-                    <li>6300000</li>
-                    <li>Brasil</li>
-                    <li><span>f</span></li>
-                </ul>
-            </div>
+            <ul className="lists-wrapper">
+                {countriesList}
+            </ul>
         </div>
     );
 };
