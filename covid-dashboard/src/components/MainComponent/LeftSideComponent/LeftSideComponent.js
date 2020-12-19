@@ -3,11 +3,11 @@ import './LeftSideComponent.css';
 import GlobalCasesComponent from './GlobalCasesComponent/index';
 import ListComponent from './ListComponent/index';
 
-const LeftSideComponent = () => {
+const LeftSideComponent = ({global, countries}) => {
     return (
         <div className="left-side-component-wrapper">
-            <GlobalCasesComponent />
-            <ListComponent />
+            <GlobalCasesComponent global={global}/>
+            <ListComponent  countries={countries}/>
         </div>
     );
 };

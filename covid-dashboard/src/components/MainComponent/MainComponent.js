@@ -4,13 +4,13 @@ import LeftSideComponent from './LeftSideComponent/index';
 import RightSideComponent from './RightSideComponent/index';
 import MapComponent from './MapComponent/index';
 
-const MainComponent = () => {
+const MainComponent = ({global, countries}) => {
 
 
 
     return (
         <section className="main-wrapper">
-                <LeftSideComponent />
+                <LeftSideComponent global={global} countries={countries}/>
                 <MapComponent />
                 <RightSideComponent />
         </section>

@@ -14,15 +14,13 @@ export default class CovidService {
       return body;
     };
   
-    async getAllCases() { //A summary of new and total cases per country updated daily.
-      const response = await this.getResource(`https://api.covid19api.com/summary`);
-  
-      return response;
+    getAllCases() { //A summary of new and total cases per country updated daily.
+      return this.getResource(`https://api.covid19api.com/summary`);
     };
   
     async getAllCountriesPopulationAndFlags() { // Population and Flags
       const response = await this.getResource(`https://restcountries.eu/rest/v2/all?fields=name;population;flag`);
-  
+
       return response;
     };
 }
