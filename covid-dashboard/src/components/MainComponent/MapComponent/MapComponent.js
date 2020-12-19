@@ -4,7 +4,7 @@ import './MapComponent.css';
 const MapComponent = () => {
     return (
         <div className="map-component-wrapper">
-            
+            Map
         </div>
     );
 };
