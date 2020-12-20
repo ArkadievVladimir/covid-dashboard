@@ -6,7 +6,7 @@ const ListComponent = ({countries}) => {
     const state = {
         id: item.id,
         countryTotalCases: item.TotalConfirmed,
-        countryName: item.country,
+        countryName: item.Country,
         ...item
     }
 
