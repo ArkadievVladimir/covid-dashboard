@@ -7,9 +7,10 @@ import covidStatState from '../InitialStateComponent/index';
 
 const App = () => {
     
-    const [state, setState] = useState({});
+    const [state, setState] = useState(null);
     const [countriesStat, setCountriesStat] = useState([]);
-    const [globalStat, setGlobalStat] = useState([])
+    const [globalStat, setGlobalStat] = useState([]);
+    const [value, setValue] = useState(0);
 
     useEffect(() => {   
         let isMounted = false;
@@ -28,8 +29,12 @@ const App = () => {
 
     return (
         <>
-        <HeaderComponent />
-        <MainComponent global={globalStat} countries={countriesStat}/>
+        <HeaderComponent setValue={setValue}/>
+        <MainComponent 
+            global={globalStat} 
+            countries={countriesStat}
+            stat={value}
+        />
         <FooterComponent />
         </>
     )  

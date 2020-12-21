@@ -24,7 +24,7 @@
     flex-direction: column;
     overflow: scroll;
     overflow-x: hidden;
-    height: 85%;
+    height: 75%;
 }
 
 .cases-wrapper {

@@ -3,12 +3,16 @@ import './HeaderComponent.css';
 import HeaderLogoComponent from './HeaderLogoComponent/index';
 import HeaderTitleComponent from './HeaderTitleComponent/index';
 import HeaderBurgerComponent from './HeaderBurgerComponent/index';
+import StatListComponent from './StatListComponent/index';
 
-const HeaderComponent = () => {
-   return (
+const HeaderComponent = ({setValue}) => {
+    return (
         <header className="header-wrapper">
             <HeaderLogoComponent />
-            <HeaderTitleComponent />
+            <div className="header-info-wrapper">
+                <HeaderTitleComponent />
+                <StatListComponent setValue={setValue}/>
+            </div>
             <HeaderBurgerComponent />
         </header>
     );
