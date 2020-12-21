@@ -5,13 +5,10 @@ import RightSideComponent from './RightSideComponent/index';
 import MapComponent from './MapComponent/index';
 
 const MainComponent = ({global, countries}) => {
-
-
-
     return (
         <section className="main-wrapper">
                 <LeftSideComponent global={global} countries={countries}/>
-                <MapComponent />
+                <MapComponent countries={countries}/>
                 <RightSideComponent />
         </section>
     );
