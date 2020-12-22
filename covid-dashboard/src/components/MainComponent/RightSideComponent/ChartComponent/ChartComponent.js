@@ -1,26 +1,40 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 // import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import './ChartComponent.css';
 
-function ChartComponent(props) {
-  const chart = useRef(null);
+function ChartComponent({ stat }) {
+  // const [statistic, setStatisctic] = useState(0);
+
+  // useEffect(() => {
+  //   setStatisctic(props);
+  // }, [props]);
+  // console.log('cvhart2', stat)
+
+  const randomData = [
+    { date: new Date(2019, 0, 1), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
+    { date: new Date(2019, 3, 3), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
+    { date: new Date(2019, 9, 9), value: stat }
+  ];
+
+  const chart = useRef(randomData);
 
   useLayoutEffect(() => {
+    // console.log('inside', stat);
     var x = am4core.create("chartdiv", am4charts.XYChart);
     x.paddingLeft = 0;
-  
-    let data = [];
-    let visits = 10;
-    for (let i = 1; i < 366; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
-      data.push({ date: new Date(2019, 0, i), value: visits });
-    }
+    
+    // let data = [];
+    // let visits = 10;
+    // for (let i = 1; i < 366; i++) {
+    //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
+    //   data.push({ date: new Date(2019, 0, i), value: visits });
+    // }
 
-    x.data = data;
+    // x.data = data;
 
     x.zoomOutButton.icon.disabled = true;
     let zoomImage = x.zoomOutButton.createChild(am4core.Image);
@@ -131,29 +145,21 @@ function ChartComponent(props) {
     customizeGrip(x.scrollbarX.endGrip);
 
     chart.current = x;
-
+    
     return () => {
       x.dispose();
     };
   }, []);
 
   // When the paddingLeft prop changes it will update the chart
-  useLayoutEffect(() => {
-    chart.current.data = props.data;
-  }, [props.data]);
-
-  let newData = () => {
-    let data = [];
-    let visits = 10;
-    for (let i = 1; i < 366; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
-      data.push({ date: new Date(2019, 0, i), value: visits });
-    }
-    chart.current.data = data;
-  };
+  // useLayoutEffect(() => {
+  //   chart.current.data = props.data;
+  // }, [props.data]);
+  // console.log('chart', chart.current)
+  chart.current.data = randomData;
 
   return (
-    <div id="chartdiv" onClick={newData} style={{ width: "100%", height: "50%" }}></div>
+    <div id="chartdiv" style={{ width: "100%", height: "50%" }}></div>
   );
 }
 export default ChartComponent;
