@@ -13,8 +13,9 @@ const MainComponent = ({global, countries, stat}) => {
                 <LeftSideComponent global={global}
                  countries={countries}
                  stat={stat}/>
-                <MapComponent />
-                <RightSideComponent />
+                <MapComponent countries={countries}
+                 stat={stat}/>
+                <RightSideComponent stat={stat}/>
         </section>
     );
 };
