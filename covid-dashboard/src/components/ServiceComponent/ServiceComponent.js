@@ -23,4 +23,12 @@ export default class CovidService {
 
       return response;
     };
+
+    getHistoryCountryCases(countryCode) {
+      return this.getResource(`https://api.covid19api.com/total/country/${countryCode}`);
+    };
+
+    getHistoryGlobalCases() {
+      return this.getResource(`https://covid19-api.org/api/timeline`);
+    };
 }

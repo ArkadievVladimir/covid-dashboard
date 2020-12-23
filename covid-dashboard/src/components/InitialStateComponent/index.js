@@ -1,3 +1,3 @@
-import covidStatState from './InitialStateComponent';
+import { covidStatState, getHistoryStatCountry } from './InitialStateComponent';
 
-export default covidStatState;
+export { covidStatState, getHistoryStatCountry };

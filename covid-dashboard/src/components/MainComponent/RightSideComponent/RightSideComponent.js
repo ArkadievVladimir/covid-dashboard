@@ -3,7 +3,7 @@ import './RightSideComponent.css';
 import TableComponent from './TableComponent/index';
 import ChartComponent from './ChartComponent/index';
 
-const RightSideComponent = ({stat}) => {
+const RightSideComponent = ({stat, activeCountry, globalHistory, countryHistoryStat, countries, global}) => {
 
   //test data
   // let data = [];
@@ -15,8 +15,14 @@ const RightSideComponent = ({stat}) => {
  
   return (
     <div className='right-side-component-wrapper'>
-      <TableComponent />
-      <ChartComponent stat={stat}/>
+      <TableComponent global={global}
+      stat={stat}
+      activeCountry={activeCountry}
+      countries={countries}/>
+      <ChartComponent stat={stat}
+      activeCountry={activeCountry}
+      globalHistory={globalHistory}
+      countryHistoryStat={countryHistoryStat}/>
     </div>
   );
 };

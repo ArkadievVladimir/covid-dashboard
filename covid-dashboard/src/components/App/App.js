@@ -3,23 +3,28 @@ import './App.css';
 import HeaderComponent from '../HeaderComponent/index';
 import MainComponent from '../MainComponent/index';
 import FooterComponent from '../FooterComponent/index';
-import covidStatState from '../InitialStateComponent/index';
+import { covidStatState } from '../InitialStateComponent/index';
 
 const App = () => {
     
     const [state, setState] = useState(null);
     const [countriesStat, setCountriesStat] = useState([]);
     const [globalStat, setGlobalStat] = useState([]);
-    const [value, setValue] = useState(0);
+    const [countryHistoryStat, setCountryHistoryStat] = useState([1,1]);
+    const [globalHistoryStat, setGlobalHistoryStat] = useState([]);
+    const [value, setValue] = useState('Total confirmed');
+    const [activeCountry, setActiveCountry] = useState(null);
+    
 
-    useEffect(() => {   
+    useEffect(() => {
         let isMounted = false;
             covidStatState()
                 .then((res) => {
                     if(!isMounted) {
                         setState(res);
                         setCountriesStat(res.countriesStat);
-                        setGlobalStat(res.globalStat)
+                        setGlobalStat(res.globalStat);
+                        setGlobalHistoryStat(res.historyData)
                     }
                 });
             return () => {
@@ -33,7 +38,12 @@ const App = () => {
         <MainComponent 
             global={globalStat} 
             countries={countriesStat}
+            globalHistory={globalHistoryStat}
             stat={value}
+            activeCountry={activeCountry}
+            setActiveCountry={setActiveCountry}
+            setCountryHistoryStat={setCountryHistoryStat}
+            countryHistoryStat={countryHistoryStat}
         />
         <FooterComponent />
         </>

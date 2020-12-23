@@ -1,30 +1,50 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 // import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import './ChartComponent.css';
 
-function ChartComponent({ stat }) {
-  // const [statistic, setStatisctic] = useState(0);
+function ChartComponent({ stat, activeCountry, globalHistory, countryHistoryStat }) {
+  const chart = useRef(null);
+  let data = [];
 
+  //if selectedCountry
+  if (activeCountry) {
+    data = countryHistoryStat.map((el) => {
+      return {
+        date: el.date,
+        value: el[stat],
+      }
+    });
+  } else {
+    data = globalHistory.map((el) => {
+      return {
+        date: el.date,
+        value: el[stat],
+      }
+    });
+  }
+
+  // console.log('ChartComponent+', activeCountry);
   // useEffect(() => {
   //   setStatisctic(props);
   // }, [props]);
   // console.log('cvhart2', stat)
 
-  const randomData = [
-    { date: new Date(2019, 0, 1), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
-    { date: new Date(2019, 3, 3), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
-    { date: new Date(2019, 9, 9), value: stat }
-  ];
+  // const randomData = [
+  //   { date: new Date(2019, 0, 1), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
+  //   { date: new Date(2019, 3, 3), value: Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100) },
+  //   { date: new Date(2019, 9, 9), value: stat }
+  // ];
+  // console.log('random', randomData)
 
-  const chart = useRef(randomData);
+  
 
   useLayoutEffect(() => {
-    // console.log('inside', stat);
-    var x = am4core.create("chartdiv", am4charts.XYChart);
+    // console.log('inside', data);
+    let x = am4core.create("chartdiv", am4charts.XYChart);
     x.paddingLeft = 0;
     
     // let data = [];
@@ -34,7 +54,7 @@ function ChartComponent({ stat }) {
     //   data.push({ date: new Date(2019, 0, i), value: visits });
     // }
 
-    // x.data = data;
+    x.data = data;
 
     x.zoomOutButton.icon.disabled = true;
     let zoomImage = x.zoomOutButton.createChild(am4core.Image);
@@ -80,7 +100,7 @@ function ChartComponent({ stat }) {
     // valueAxis.renderer.baseGrid.stroke = am4core.color("white");
 
     //ColumnSeries() LineSeries()
-    let series = x.series.push(new am4charts.LineSeries());
+    let series = x.series.push(new am4charts.ColumnSeries());
     series.fill = am4core.color("red");
     series.dataFields.dateX = "date";
     series.dataFields.valueY = "value";
@@ -105,7 +125,6 @@ function ChartComponent({ stat }) {
     series.tooltip.label.minWidth = 40;
     series.tooltip.label.minHeight = 40;
     series.tooltip.label.textAlign = "middle";
-    series.tooltip.label.textValign = "middle";
     series.tooltip.label.fontSize = '12px';
     series.tooltip.animationDuration = 200;
     
@@ -116,47 +135,51 @@ function ChartComponent({ stat }) {
     x.cursor.lineX.strokeOpacity = 0.6;
     // x.cursor.lineX.strokeDasharray = "";
   
-    let scrollbarX = new am4charts.XYChartScrollbar();
-    scrollbarX.series.push(series);
-    scrollbarX.animationDuration = 1000;
 
-    x.scrollbarX = new am4core.Scrollbar();
-    x.scrollbarX.background.fill = am4core.color("rgb(60,60,60)");
-    x.scrollbarX.thumb.background.fill = am4core.color("rgb(60,60,60)");
-    x.scrollbarX.thumb.background.states.getKey('hover').properties.fill = am4core.color("rgb(60,60,60)");
-    x.scrollbarX.thumb.background.states.getKey('down').properties.fill = am4core.color("rgb(60,60,60)");
-    x.scrollbarX.thumb.background.strokeOpacity = 0;
-    x.scrollbarX.minHeight = 10;
+    //! Error Cannot read property 'uidAttr' of undefined
+    // let scrollbarX = new am4charts.XYChartScrollbar();
+    // scrollbarX.series.push(series);
+    // scrollbarX.animationDuration = 1000;
+
+    // x.scrollbarX = new am4core.Scrollbar();
+    // x.scrollbarX.background.fill = am4core.color("rgb(60,60,60)");
+    // x.scrollbarX.thumb.background.fill = am4core.color("rgb(60,60,60)");
+    // x.scrollbarX.thumb.background.states.getKey('hover').properties.fill = am4core.color("rgb(60,60,60)");
+    // x.scrollbarX.thumb.background.states.getKey('down').properties.fill = am4core.color("rgb(60,60,60)");
+    // x.scrollbarX.thumb.background.strokeOpacity = 0;
+    // x.scrollbarX.minHeight = 10;
   
-    function customizeGrip(grip) {
-      // Remove default grip image
-      grip.icon.disabled = true;
-      // Disable background
-      grip.background.disabled = true;
-      // Add rotated rectangle as bi-di arrow
-      let img = grip.createChild(am4core.Circle);
-      img.width = 15;
-      img.height = 15;
-      img.fill = am4core.color("rgb(70,70,70)");
-      img.align = "center";
-      img.valign = "middle";
-    }
-    customizeGrip(x.scrollbarX.startGrip);
-    customizeGrip(x.scrollbarX.endGrip);
+    // function customizeGrip(grip) {
+    //   // Remove default grip image
+    //   grip.icon.disabled = true;
+    //   // Disable background
+    //   grip.background.disabled = true;
+    //   // Add rotated rectangle as bi-di arrow
+    //   let img = grip.createChild(am4core.Circle);
+    //   img.width = 15;
+    //   img.height = 15;
+    //   img.fill = am4core.color("rgb(70,70,70)");
+    //   img.align = "center";
+    //   img.valign = "middle";
+    // }
+    // customizeGrip(x.scrollbarX.startGrip);
+    // customizeGrip(x.scrollbarX.endGrip);
+    //! Error Cannot read property 'uidAttr' of undefined
 
     chart.current = x;
     
     return () => {
       x.dispose();
+      // console.log('x.dispose()');
     };
   }, []);
 
-  // When the paddingLeft prop changes it will update the chart
-  // useLayoutEffect(() => {
-  //   chart.current.data = props.data;
-  // }, [props.data]);
+  // When the data changes it will update the chart
+  useLayoutEffect(() => {
+    chart.current.data = data;
+  }, [data]);
   // console.log('chart', chart.current)
-  chart.current.data = randomData;
+  // chart.current.data = data;
 
   return (
     <div id="chartdiv" style={{ width: "100%", height: "50%" }}></div>
