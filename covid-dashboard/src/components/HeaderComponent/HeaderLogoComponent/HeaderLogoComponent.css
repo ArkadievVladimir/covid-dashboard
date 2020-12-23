@@ -3,6 +3,13 @@
     height: 100%;
 }
 
+@media screen and (max-width: 650px) {
+    .jh-logo-wrapper {
+        display: none;
+    }
+}
+
+
 .jh-logo-wrapper a {
     display: inline-block;
     width: 100%;
@@ -12,11 +19,36 @@
     align-items: center;
 }
 
+@media screen and (max-width: 870px) {
+    .jh-logo-wrapper a {
+        align-items: flex-start;
+    }
+}
+
 .jh-logo-img {
     width: 25%;
-    height: 35%;
+    height: 50%;
 }
 
 .jh-logo-wrapper .jh-logo-img:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .jh-logo-wrapper {
+        width: 5%;
+    }  
+
+    .jh-logo-img {
+        width: 50%;
+        height: 30%;
+    }
+}
+
+
+@media screen and (max-width: 870px) {
+    .jh-logo-img {
+        width: 50%;
+        height: 25%;
+    }
 }

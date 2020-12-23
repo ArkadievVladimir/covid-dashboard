@@ -1,8 +1,15 @@
 .map-component-wrapper {
-    width: 50%;
+    position: relative;
+    width: 49%;
+    margin: 0 0.5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 73vh;
-    /* background-color: yellow; */
+    height: 73vh; 
+}
+
+@media screen and (max-width: 1024px) {
+    .map-component-wrapper {
+        height: 67vh;
+    } 
 }

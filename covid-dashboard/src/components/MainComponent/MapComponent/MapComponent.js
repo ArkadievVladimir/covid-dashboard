@@ -1,9 +1,10 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4core from "@amcharts/amcharts4/core";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import { getHistoryStatCountry } from '../../InitialStateComponent/index';
 import './MapComponent.css';
+import FullScreenBtnComponent from '../LeftSideComponent/ListComponent/FullScreenBtnComponent/index';
 
 function MapComponent({ countries, stat, setCountryHistoryStat, setActiveCountry, activeCountry }) {
   let mapData = [];
@@ -295,10 +296,35 @@ imageTemplate.adapter.add("longitude", function(longitude, target) {
   // useLayoutEffect(() => {
   //   target.current.series.values[1].data = selectCountry;
   // }, [selectCountry]);
+  const [fullScreen, setfullScreen] = useState(false);
+  function onFullScreen () {
+    setfullScreen(!fullScreen);
+    const body = document.getElementsByTagName('body');
+    if(body[0].style.overflow === "hidden") {
+      body[0].style.overflow = "auto";
+    } else {
+      body[0].style.overflow = "hidden";
+    } 
+  };
+  const zIndex = 'zIndex';
+  const background = 'backgroundColor';
+  const style = {
+    position: fullScreen ? "absolute" : "relative",
+    top: fullScreen ? "0" : "0",
+    bottom: fullScreen ? "0" : "0",
+    right: fullScreen ? "0" : "0",
+    left: fullScreen ? "0" : "0",
+    width: fullScreen ? "100%" : "49%",
+    height: fullScreen ? "100vh" : "73vh",
+    [background]: fullScreen ? "black" : "#222222",
+    [zIndex]: fullScreen ? "1000" : "0",
+  };
+
 
   return (
-    <div className="map-component-wrapper">
+    <div className="map-component-wrapper"  style={style} >
       <div id="mapdiv" style={{ width: "100%", height: "100%" }}></div>
+      <FullScreenBtnComponent  onFullScreen={onFullScreen}/>
     </div>
    
   );

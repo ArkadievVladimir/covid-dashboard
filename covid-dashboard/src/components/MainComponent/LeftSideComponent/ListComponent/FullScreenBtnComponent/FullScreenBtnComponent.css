@@ -1,0 +1,29 @@
+.full-screen-btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    padding: 7px;
+    border-radius: 50%;
+    user-select: none;
+    outline: none;
+    border: none;
+    background-color: #bdbdbd;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 1024px) {
+    .full-screen-btn {
+        top: 2%;
+    } 
+}
+
+.full-screen-btn, 
+.full-screen-btn:active, 
+.full-screen-btn:focus {
+    outline: none;
+}
+
+.full-screen-btn:hover {
+    cursor: zoom-in;
+    background-color: #e60000;
+}

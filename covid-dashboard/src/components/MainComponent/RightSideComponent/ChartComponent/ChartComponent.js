@@ -1,10 +1,11 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 // import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import './ChartComponent.css';
+import FullScreenBtnComponent from '../../LeftSideComponent/ListComponent/FullScreenBtnComponent/index';
 
 function ChartComponent({ stat, activeCountry, globalHistory, countryHistoryStat }) {
   const chart = useRef(null);
@@ -181,8 +182,35 @@ function ChartComponent({ stat, activeCountry, globalHistory, countryHistoryStat
   // console.log('chart', chart.current)
   // chart.current.data = data;
 
+  const [fullScreen, setfullScreen] = useState(false);
+  function onFullScreen () {
+    setfullScreen(!fullScreen);
+    const body = document.getElementsByTagName('body');
+    if(body[0].style.overflow === "hidden") {
+      body[0].style.overflow = "auto";
+    } else {
+      body[0].style.overflow = "hidden";
+    } 
+  };
+  const zIndex = 'zIndex';
+  const background = 'backgroundColor';
+  const style = {
+    position: fullScreen ? "absolute" : "relative",
+    top: fullScreen ? "0" : "0",
+    bottom: fullScreen ? "0" : "0",
+    right: fullScreen ? "0" : "0",
+    left: fullScreen ? "0" : "0",
+    width: fullScreen ? "100%" : "100%",
+    height: fullScreen ? "100vh" : "50%",
+    [background]: fullScreen ? "black" : "#222222",
+    [zIndex]: fullScreen ? "1000" : "0",
+  };
+
   return (
-    <div id="chartdiv" style={{ width: "100%", height: "50%" }}></div>
+    <div style={style}>
+    <div id="chartdiv" style={{ width: "100%", height: "100%", backgroundColor: "#222222", borderRadius: "5px"}}></div>
+    <FullScreenBtnComponent onFullScreen={onFullScreen}/>
+    </div>
   );
 }
 export default ChartComponent;

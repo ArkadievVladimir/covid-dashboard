@@ -3,5 +3,10 @@
     flex-direction: column;
     width: 25%;
     height: 73vh;
-    margin: 0 0.5%;
+}
+
+@media screen and (max-width: 1024px) {
+    .left-side-component-wrapper {
+        height: 67vh;
+    } 
 }
