@@ -1,13 +1,19 @@
 .copyright {
     width: 30%;
-    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .copyright span {
     font-size: 20px;
     font-family: Arial, sans-serif;
     color: #bdbdbd;
+}
+
+@media screen and (max-width: 820px) {
+    .copyright span {
+        font-size: 14px;
+    }
 }

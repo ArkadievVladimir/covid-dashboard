@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     
 }
 
@@ -11,4 +12,10 @@
     font-family: Arial, sans-serif;
     color: #bdbdbd;
     text-decoration: none;
+}
+
+@media screen and (max-width: 820px) {
+    .git-link-wrapper a {
+        font-size: 14px;
+    }
 }

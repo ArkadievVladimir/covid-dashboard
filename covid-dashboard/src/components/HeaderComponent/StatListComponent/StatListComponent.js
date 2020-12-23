@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './StatListComponent.css';
 
 const StatListComponent = ({setValue}) => {
-    // const [checked, setChecked] = useState(false);
 
     function setItemChecked() {
-        // setChecked(!checked);
         const inputs = document.querySelectorAll('.stat');
         let selectedInputIndex;
         inputs.forEach((input) => {
@@ -39,33 +37,33 @@ const StatListComponent = ({setValue}) => {
                     <input className="stat" name="stat" type="radio" value="New recovered" onChange={setItemChecked}></input>
                     <span>New Recovered</span>
                 </div>
-                <div className="btn-wrapper">C
-                    <input className="stat" name="stat" type="radio" value="New deaths" onChange={setItemChecked}></input>
+                <div className="btn-wrapper">
+                    <input className="stat" name="stat" type="radio" value="NewDeaths" onChange={setItemChecked}></input>
                     <span>New Deaths</span>
                 </div>
                 <div className="btn-wrapper">
                     <input className="stat" name="stat" type="radio" value="Global cases per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Cases Per 100 Thousand</span>
+                    <span>Total Cases per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
                     <input className="stat" name="stat" type="radio" value="Global recovered per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Recovered Per 100 Thousand</span>
+                    <span>Total Recovered per 100,000</span>
                 </div>
                 <div className="stat" className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Global deaths per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Deathes Per 100 Thousand</span>
+                    <input className="stat" name="stat" type="radio" value="TotalDeathesPer100Thousand" onChange={setItemChecked}></input>
+                    <span>Total Deaths per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New global cases per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Cases Per100 Thousand</span>
+                    <input className="stat" name="stat" type="radio" value="NewCasesPer100Thousand" onChange={setItemChecked}></input>
+                    <span>New Cases per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
                     <input className="stat" name="stat" type="radio" value="New global recovered per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Recovered Per 100 Thousand</span>
+                    <span>New Recovered per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
                     <input className="stat" name="stat" type="radio" value="New global deaths per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Deaths Per 100 Thousand</span>
+                    <span>New Deaths per 100,000</span>
                 </div>
             </form> 
         </div>

@@ -1,12 +1,9 @@
 .list-wrapper {
     display: flex;
-    width: 100%;
-    height: 79%;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-wrap: wrap;
-    background-color: #222222;
     border-radius: 5px;
 }
 
@@ -18,6 +15,13 @@
     margin-top: 3%;
 }
 
+@media screen and (max-width: 600px) {
+    .list-wrapper h2 {
+        font-size: 12px;
+    } 
+}
+
+
 .lists-wrapper {
     display: flex;
     width: 100%;
@@ -25,6 +29,18 @@
     overflow: scroll;
     overflow-x: hidden;
     height: 75%;
+}
+
+@media screen and (max-width: 910px) {
+    .lists-wrapper {
+        height: 68%;
+    } 
+}
+
+@media screen and (max-width: 740px) {
+    .lists-wrapper {
+        height: 63%;
+    } 
 }
 
 .cases-wrapper {
@@ -54,6 +70,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 7px;
+}
+
+@media screen and (max-width: 1024px) {
+    .country-stat-wrapper {
+        font-size: 13px !important;
+    } 
+}
+
+@media screen and (max-width: 870px) {
+    .country-stat-wrapper {
+        font-size: 12px !important;
+    } 
+}
+
+@media screen and (max-width: 800px) {
+    .country-stat-wrapper {
+        width: 35%;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .country-stat-wrapper {
+        font-size: 10px !important;
+    } 
 }
 
 .country-flag {
@@ -71,11 +112,41 @@
     align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+    .country-wrapper {
+        font-size: 13px !important;
+    } 
+}
+
+@media screen and (max-width: 870px) {
+    .country-wrapper {
+        font-size: 12px !important;
+    } 
+}
+
+@media screen and (max-width: 800px) {
+    .country-wrapper {
+        width: 65%;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .country-wrapper {
+        font-size: 10px !important;
+    } 
+}
+
 .country-flag-wrapper {
     width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+    .country-flag-wrapper {
+        display: none;
+    } 
 }
 
 ::-webkit-scrollbar {
@@ -91,3 +162,12 @@
 ::-webkit-scrollbar-thumb {
     background: #5c5c5c;
 }
+
+.full-screen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}   
