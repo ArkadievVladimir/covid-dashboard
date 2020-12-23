@@ -1,10 +1,7 @@
-import React from 'react';
 import CovidService from '../ServiceComponent/index';
 
 export const covidStatState = () => {
-
   const service = new CovidService();
-
   async function updateStatisctic() {
     const state = {};
     let covidData;
@@ -21,13 +18,11 @@ export const covidStatState = () => {
         await service
         .getAllCountriesPopulationAndFlags()
         .then((countriesStat) => {
-          // merge two APIs & remove unnecessary API keys
           covidData.forEach((elem) => {
             countriesStat.forEach((item) => {
               if (elem.CountryCode === item.alpha2Code) {
                 Object.assign(elem, item);
                 ['alpha2Code', 'name', 'Slug', 'Date', 'Premium'].forEach((i) => delete elem[i]);
-                // add new keys
                 elem.id = ind++;
                 elem['Total confirmed'] = elem.TotalConfirmed;
                 elem['Total recovered'] = elem.TotalRecovered;
@@ -35,23 +30,23 @@ export const covidStatState = () => {
                 elem['New confirmed'] = elem.NewConfirmed;
                 elem['New recovered'] = elem.NewRecovered;
                 elem['New deaths'] = elem.NewDeaths;
-                elem['Global cases per 100 thousand'] = Math.ceil(elem.TotalConfirmed / (elem.population / 100000));
-                elem['Global recovered per 100 thousand'] = Math.ceil(elem.TotalRecovered / (elem.population / 100000));
-                elem['Global deaths per 100 thousand'] = Math.ceil(elem.TotalDeaths / (elem.population / 100000));
-                elem['New global cases per 100 thousand'] = Math.ceil(elem.NewConfirmed / (elem.population / 100000));
-                elem['New global recovered per 100 thousand'] = Math.ceil(elem.NewRecovered / (elem.population / 100000));
-                elem['New global deaths per 100 thousand'] = Math.ceil(elem.NewDeaths / (elem.population / 100000));
+                elem['Global cases per 100 thousand'] = setAutoRound(elem.TotalConfirmed / (elem.population / 100000));
+                elem['Global recovered per 100 thousand'] = setAutoRound(elem.TotalRecovered / (elem.population / 100000));
+                elem['Global deaths per 100 thousand'] = setAutoRound(elem.TotalDeaths / (elem.population / 100000));
+                elem['New global cases per 100 thousand'] = setAutoRound(elem.NewConfirmed / (elem.population / 100000));
+                elem['New global recovered per 100 thousand'] = setAutoRound(elem.NewRecovered / (elem.population / 100000));
+                elem['New global deaths per 100 thousand'] = setAutoRound(elem.NewDeaths / (elem.population / 100000));
                 ['TotalConfirmed', 'TotalRecovered', 'TotalDeaths', 'NewConfirmed', 'NewRecovered', 'NewDeaths'].forEach((i) => delete elem[i]);
                 populationCount += item.population;
               }
             })
           })
-          const globalCasesPer100Thousand = Math.ceil(globalStat.TotalConfirmed / (populationCount / 100000));
-          const globalRecoveredPer100Thousand = Math.ceil(globalStat.TotalRecovered / (populationCount / 100000));
-          const globalDeathsPer100Thousand = Math.ceil(globalStat.TotalDeaths / (populationCount / 100000));
-          const newGlobalCasesPer100Thousand = Math.ceil(globalStat.NewConfirmed / (populationCount / 100000));
-          const newGlobalRecoveredPer100Thousand = Math.ceil(globalStat.NewRecovered / (populationCount / 100000));
-          const newGlobalDeathsPer100Thousand = Math.ceil(globalStat.NewDeaths / (populationCount / 100000));
+          const globalCasesPer100Thousand = setAutoRound(globalStat.TotalConfirmed / (populationCount / 100000));
+          const globalRecoveredPer100Thousand = setAutoRound(globalStat.TotalRecovered / (populationCount / 100000));
+          const globalDeathsPer100Thousand = setAutoRound(globalStat.TotalDeaths / (populationCount / 100000));
+          const newGlobalCasesPer100Thousand = setAutoRound(globalStat.NewConfirmed / (populationCount / 100000));
+          const newGlobalRecoveredPer100Thousand = setAutoRound(globalStat.NewRecovered / (populationCount / 100000));
+          const newGlobalDeathsPer100Thousand = setAutoRound(globalStat.NewDeaths / (populationCount / 100000));
           const globalCovidData = {
             'Total confirmed': globalStat.TotalConfirmed,
             'Total recovered': globalStat.TotalRecovered,
@@ -84,12 +79,12 @@ export const covidStatState = () => {
                 newDeaths = elem.total_deaths - historyStat[i + 1].total_deaths;
                 if (newDeaths < 0) newDeaths = 0;
               }
-              const totalConfirmedPer100Thousand = Math.ceil(elem.total_cases / (populationCount / 100000));
-              const totalRecoveredPer100Thousand = Math.ceil(elem.total_recovered / (populationCount / 100000));
-              const totalDeathsPer100Thousand = Math.ceil(elem.total_deaths / (populationCount / 100000));
-              const newConfirmedPer100Thousand = Math.ceil(newConfirmed / (populationCount / 100000));
-              const newRecoveredPer100Thousand = Math.ceil(newRecovered / (populationCount / 100000));
-              const newDeathsPer100Thousand = Math.ceil(newDeaths / (populationCount / 100000));
+              const totalConfirmedPer100Thousand = setAutoRound(elem.total_cases / (populationCount / 100000));
+              const totalRecoveredPer100Thousand = setAutoRound(elem.total_recovered / (populationCount / 100000));
+              const totalDeathsPer100Thousand = setAutoRound(elem.total_deaths / (populationCount / 100000));
+              const newConfirmedPer100Thousand = setAutoRound(newConfirmed / (populationCount / 100000));
+              const newRecoveredPer100Thousand = setAutoRound(newRecovered / (populationCount / 100000));
+              const newDeathsPer100Thousand = setAutoRound(newDeaths / (populationCount / 100000));
               return {
                 date: elem.last_update,
                 'Total confirmed': elem.total_cases,
@@ -114,9 +109,7 @@ export const covidStatState = () => {
   }
   return updateStatisctic();
 }
-
 export async function getHistoryStatCountry(selectedCountyCode, countries) {
-  // console.log('countries', countries);
   let population;
   countries.forEach((item) => {
     if (item.CountryCode === selectedCountyCode) {
@@ -140,17 +133,12 @@ export async function getHistoryStatCountry(selectedCountyCode, countries) {
               newDeaths = response[i + 1].Deaths - elem.Deaths;
               if (newDeaths < 0) newDeaths = 0;
             }
-
- 
-            // console.log(selectedCountyCode, population);
-            // const population = 7594000000;
-            
-            const totalConfirmedPer100Thousand = Math.ceil(elem.Confirmed / (population / 100000));
-            const totalRecoveredPer100Thousand = Math.ceil(elem.Recovered / (population / 100000));
-            const totalDeathsPer100Thousand = Math.ceil(elem.Deaths / (population / 100000));
-            const newConfirmedPer100Thousand = Math.ceil(newConfirmed / (population / 100000));
-            const newRecoveredPer100Thousand = Math.ceil(newRecovered / (population / 100000));
-            const newDeathsPer100Thousand = Math.ceil(newDeaths / (population / 100000));
+            const totalConfirmedPer100Thousand = setAutoRound(elem.Confirmed / (population / 100000));
+            const totalRecoveredPer100Thousand = setAutoRound(elem.Recovered / (population / 100000));
+            const totalDeathsPer100Thousand = setAutoRound(elem.Deaths / (population / 100000));
+            const newConfirmedPer100Thousand = setAutoRound(newConfirmed / (population / 100000));
+            const newRecoveredPer100Thousand = setAutoRound(newRecovered / (population / 100000));
+            const newDeathsPer100Thousand = newDeaths / (population / 100000);
             return {
               date: elem.Date,
               'Total confirmed': elem.Confirmed,
@@ -167,10 +155,23 @@ export async function getHistoryStatCountry(selectedCountyCode, countries) {
               'New global deaths per 100 thousand': newDeathsPer100Thousand,
             }
           })
-          
-          
         })
-        // console.log('inside func, out',historyData);
         return historyData;
 }
-// export default covidStatState;
+function setAutoRound(num) {
+  let roundedValue;
+  if (num >=70) {
+    roundedValue = num.toFixed(0);
+  } else if (num < 0.001) {
+    roundedValue = 0;
+  } else if (num < 0.1) {
+    roundedValue = num.toFixed(3);
+  }else if (num < 1) {
+    roundedValue = num.toFixed(3);
+  } else if (num < 10) {
+    roundedValue = num.toFixed(2);
+  } else if (num < 70) {
+    roundedValue = num.toFixed(1);
+  }
+  return roundedValue;
+}

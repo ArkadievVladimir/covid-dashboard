@@ -15,7 +15,6 @@ const MainComponent = (
         setCountryHistoryStat,
         countryHistoryStat
     }) => {
-
     return (
         <section className="main-wrapper">
                 <LeftSideComponent global={global}
@@ -38,5 +37,4 @@ const MainComponent = (
         </section>
     );
 };
-
 export default MainComponent;

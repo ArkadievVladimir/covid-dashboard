@@ -1,20 +1,16 @@
-import { fromArray } from '@amcharts/amcharts4/.internal/core/utils/Iterator';
-import React, { useEffect, useState } from 'react';
-import { getHistoryStatCountry } from '../../../InitialStateComponent/index';
+import React, { useState } from 'react';
 import './TableComponent.css';
 import  FullScreenBtnComponent from '../../LeftSideComponent/ListComponent/FullScreenBtnComponent/index';
 
 const TableComponent = ({stat, activeCountry, global, countries}) => {
-    let countriesList
+    let countriesList;
     const keys = Object.keys(global);
     let data;
-  
     if (activeCountry) {
     [data] = countries.filter((el) => el.CountryCode === activeCountry);
   } else {
     data = global;
   }
-
   if (keys) {
     countriesList = keys.map((elem, i) => {
         return (
@@ -25,7 +21,6 @@ const TableComponent = ({stat, activeCountry, global, countries}) => {
         );
     })
   }
-
   const [fullScreen, setfullScreen] = useState(false);
   function onFullScreen () {
     setfullScreen(!fullScreen);
@@ -50,7 +45,6 @@ const TableComponent = ({stat, activeCountry, global, countries}) => {
     [zIndex]: fullScreen ? "1000" : "0",
     marginBottom: fullScreen ? "0" : "1%",
   };
-
   return (
     <div style={style} className="list-wrapper" >
         <h2>Country/global statistics</h2>
@@ -61,5 +55,4 @@ const TableComponent = ({stat, activeCountry, global, countries}) => {
     </div>
   );
 };
-
 export default TableComponent;

@@ -38,7 +38,7 @@ const StatListComponent = ({setValue}) => {
                     <span>New Recovered</span>
                 </div>
                 <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="NewDeaths" onChange={setItemChecked}></input>
+                    <input className="stat" name="stat" type="radio" value="New deaths" onChange={setItemChecked}></input>
                     <span>New Deaths</span>
                 </div>
                 <div className="btn-wrapper">
@@ -50,11 +50,11 @@ const StatListComponent = ({setValue}) => {
                     <span>Total Recovered per 100,000</span>
                 </div>
                 <div className="stat" className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="TotalDeathesPer100Thousand" onChange={setItemChecked}></input>
+                    <input className="stat" name="stat" type="radio" value="Global deaths per 100 thousand" onChange={setItemChecked}></input>
                     <span>Total Deaths per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="NewCasesPer100Thousand" onChange={setItemChecked}></input>
+                    <input className="stat" name="stat" type="radio" value="New global cases per 100 thousand" onChange={setItemChecked}></input>
                     <span>New Cases per 100,000</span>
                 </div>
                 <div className="btn-wrapper">
@@ -67,7 +67,7 @@ const StatListComponent = ({setValue}) => {
                 </div>
             </form> 
         </div>
-    )
+    );
 }
 
 export default StatListComponent;
