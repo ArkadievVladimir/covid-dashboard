@@ -5,11 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 73vh; 
+    height: 73vh;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1024px) {
     .map-component-wrapper {
-        height: 67vh;
+        height: 67vh !important;
     } 
 }

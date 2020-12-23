@@ -15,5 +15,4 @@ const HeaderComponent = ({setValue}) => {
         </header>
     );
 };
-
 export default HeaderComponent;

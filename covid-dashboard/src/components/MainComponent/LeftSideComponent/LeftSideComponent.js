@@ -15,5 +15,4 @@ const LeftSideComponent = ({global, countries, stat, activeCountry, setActiveCou
         </div>
     );
 };
-
 export default LeftSideComponent;
