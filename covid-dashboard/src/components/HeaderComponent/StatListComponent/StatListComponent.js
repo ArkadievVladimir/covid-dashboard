@@ -2,72 +2,60 @@ import React from 'react';
 import './StatListComponent.css';
 
 const StatListComponent = ({setValue}) => {
-
     function setItemChecked() {
-        const inputs = document.querySelectorAll('.stat');
-        let selectedInputIndex;
-        inputs.forEach((input) => {
-            if (input.checked === true) {
-                selectedInputIndex = input.value;
-            }
-        });
-        setValue(selectedInputIndex);
+        function getSelectedInput(inputClass) {
+            const inputs = document.querySelectorAll(`.${inputClass}`);
+            let getSelectedCheckbox;
+            inputs.forEach((input) => {
+                if (input.checked) {
+                    getSelectedCheckbox = input.value;
+                }
+            });
+            return getSelectedCheckbox;
+        }
+        const checkbox = document.querySelector(`.count`);
+        let getSelectedCheckbox = '';
+        if (checkbox.checked) {
+           getSelectedCheckbox = checkbox.value;
+        }
+        const mode = `${getSelectedInput('period')} ${getSelectedInput('metric')}${getSelectedCheckbox}`;
+        setValue(mode);
     };
-
     return (
         <div className="header-form-wrapper">
             <form action="#" className="header-form-btns-wrapper">
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Total confirmed"  defaultChecked={true} onChange={setItemChecked}></input>
-                    <span>Total Confirmed</span>
+                <div class="wrapper-metric">
+                    <div className="btn-wrapper">
+                        <input className="metric" name="metric" type="radio" value="confirmed" defaultChecked={true} onChange={setItemChecked}></input>
+                        <span>Confirmed</span>
                     </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Total recovered"  onChange={setItemChecked}></input>
-                    <span>Total Recovered</span>
+                    <div className="btn-wrapper">
+                        <input className="metric" name="metric" type="radio" value="recovered" onChange={setItemChecked}></input>
+                        <span>Recovered</span>
+                    </div>
+                    <div className="btn-wrapper">
+                        <input className="metric" name="metric" type="radio" value="deaths" onChange={setItemChecked}></input>
+                        <span>Deaths</span>
+                    </div>
                 </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Total deaths" onChange={setItemChecked}></input>
-                    <span>Total Deaths</span>
+                <div class="wrapper-period">
+                    <div className="btn-wrapper">
+                        <input className="period" name="period" type="radio" value="Total" defaultChecked={true} onChange={setItemChecked}></input>
+                        <span>Total</span>
+                    </div>
+                    <div className="btn-wrapper">
+                        <input className="period" name="period" type="radio" value="New" onChange={setItemChecked}></input>
+                        <span>Day change</span>
+                    </div>
                 </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New confirmed" onChange={setItemChecked}></input>
-                    <span>New Confirmed</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New recovered" onChange={setItemChecked}></input>
-                    <span>New Recovered</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New deaths" onChange={setItemChecked}></input>
-                    <span>New Deaths</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Global cases per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Cases per 100,000</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Global recovered per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Recovered per 100,000</span>
-                </div>
-                <div className="stat" className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="Global deaths per 100 thousand" onChange={setItemChecked}></input>
-                    <span>Total Deaths per 100,000</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New global cases per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Cases per 100,000</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New global recovered per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Recovered per 100,000</span>
-                </div>
-                <div className="btn-wrapper">
-                    <input className="stat" name="stat" type="radio" value="New global deaths per 100 thousand" onChange={setItemChecked}></input>
-                    <span>New Deaths per 100,000</span>
+                <div class="wrapper-count">
+                    <div className="btn-wrapper">
+                        <input className="count" name="count" type="checkbox" value=" per 100 thousand" onClick={setItemChecked}></input>
+                        <span>Per 100 thousand</span>
+                    </div>
                 </div>
             </form> 
         </div>
     );
 }
-
 export default StatListComponent;
