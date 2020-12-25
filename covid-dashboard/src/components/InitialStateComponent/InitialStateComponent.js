@@ -30,12 +30,12 @@ export const covidStatState = () => {
                 elem['New confirmed'] = elem.NewConfirmed;
                 elem['New recovered'] = elem.NewRecovered;
                 elem['New deaths'] = elem.NewDeaths;
-                elem['Global cases per 100 thousand'] = setAutoRound(elem.TotalConfirmed / (elem.population / 100000));
-                elem['Global recovered per 100 thousand'] = setAutoRound(elem.TotalRecovered / (elem.population / 100000));
-                elem['Global deaths per 100 thousand'] = setAutoRound(elem.TotalDeaths / (elem.population / 100000));
-                elem['New global cases per 100 thousand'] = setAutoRound(elem.NewConfirmed / (elem.population / 100000));
-                elem['New global recovered per 100 thousand'] = setAutoRound(elem.NewRecovered / (elem.population / 100000));
-                elem['New global deaths per 100 thousand'] = setAutoRound(elem.NewDeaths / (elem.population / 100000));
+                elem['Total confirmed per 100 thousand'] = setAutoRound(elem.TotalConfirmed / (elem.population / 100000));
+                elem['Total recovered per 100 thousand'] = setAutoRound(elem.TotalRecovered / (elem.population / 100000));
+                elem['Total deaths per 100 thousand'] = setAutoRound(elem.TotalDeaths / (elem.population / 100000));
+                elem['New confirmed per 100 thousand'] = setAutoRound(elem.NewConfirmed / (elem.population / 100000));
+                elem['New recovered per 100 thousand'] = setAutoRound(elem.NewRecovered / (elem.population / 100000));
+                elem['New deaths per 100 thousand'] = setAutoRound(elem.NewDeaths / (elem.population / 100000));
                 ['TotalConfirmed', 'TotalRecovered', 'TotalDeaths', 'NewConfirmed', 'NewRecovered', 'NewDeaths'].forEach((i) => delete elem[i]);
                 populationCount += item.population;
               }
@@ -54,12 +54,12 @@ export const covidStatState = () => {
             'New confirmed': globalStat.NewConfirmed,
             'New recovered': globalStat.NewRecovered,
             'New deaths': globalStat.NewDeaths,
-            'Global cases per 100 thousand': globalCasesPer100Thousand,
-            'Global recovered per 100 thousand': globalRecoveredPer100Thousand,
-            'Global deaths per 100 thousand': globalDeathsPer100Thousand,
-            'New global cases per 100 thousand': newGlobalCasesPer100Thousand,
-            'New global recovered per 100 thousand': newGlobalRecoveredPer100Thousand,
-            'New global deaths per 100 thousand': newGlobalDeathsPer100Thousand,
+            'Total confirmed per 100 thousand': globalCasesPer100Thousand,
+            'Total recovered per 100 thousand': globalRecoveredPer100Thousand,
+            'Total deaths per 100 thousand': globalDeathsPer100Thousand,
+            'New confirmed per 100 thousand': newGlobalCasesPer100Thousand,
+            'New recovered per 100 thousand': newGlobalRecoveredPer100Thousand,
+            'New deaths per 100 thousand': newGlobalDeathsPer100Thousand,
           }
           state.countriesStat = covidData;
           state.globalStat = globalCovidData;
@@ -93,12 +93,12 @@ export const covidStatState = () => {
                 'New confirmed': newConfirmed,
                 'New recovered': newRecovered,
                 'New deaths': newDeaths,
-                'Global cases per 100 thousand': totalConfirmedPer100Thousand,
-                'Global recovered per 100 thousand': totalRecoveredPer100Thousand,
-                'Global deaths per 100 thousand': totalDeathsPer100Thousand,
-                'New global cases per 100 thousand': newConfirmedPer100Thousand,
-                'New global recovered per 100 thousand': newRecoveredPer100Thousand,
-                'New global deaths per 100 thousand': newDeathsPer100Thousand,
+                'Total confirmed per 100 thousand': totalConfirmedPer100Thousand,
+                'Total recovered per 100 thousand': totalRecoveredPer100Thousand,
+                'Total deaths per 100 thousand': totalDeathsPer100Thousand,
+                'New confirmed per 100 thousand': newConfirmedPer100Thousand,
+                'New recovered per 100 thousand': newRecoveredPer100Thousand,
+                'New deaths per 100 thousand': newDeathsPer100Thousand,
               }
             })
             state.historyData = historyData.reverse();
@@ -147,12 +147,12 @@ export async function getHistoryStatCountry(selectedCountyCode, countries) {
               'New confirmed': newConfirmed,
               'New recovered': newRecovered,
               'New deaths': newDeaths,
-              'Global cases per 100 thousand': totalConfirmedPer100Thousand,
-              'Global recovered per 100 thousand': totalRecoveredPer100Thousand,
-              'Global deaths per 100 thousand': totalDeathsPer100Thousand,
-              'New global cases per 100 thousand': newConfirmedPer100Thousand,
-              'New global recovered per 100 thousand': newRecoveredPer100Thousand,
-              'New global deaths per 100 thousand': newDeathsPer100Thousand,
+              'Total confirmed per 100 thousand': totalConfirmedPer100Thousand,
+              'Total recovered per 100 thousand': totalRecoveredPer100Thousand,
+              'Total deaths per 100 thousand': totalDeathsPer100Thousand,
+              'New confirmed per 100 thousand': newConfirmedPer100Thousand,
+              'New recovered per 100 thousand': newRecoveredPer100Thousand,
+              'New deaths per 100 thousand': newDeathsPer100Thousand,
             }
           })
         })

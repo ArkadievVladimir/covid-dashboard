@@ -1,7 +1,6 @@
 .header-title-wrapper {
     width: 100%;
     display: flex;
-    margin-bottom: 10px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -12,7 +11,7 @@
 
 @media screen and (max-width: 1024px) {
     .header-title-wrapper {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         font-size: 18px;
     } 
 }

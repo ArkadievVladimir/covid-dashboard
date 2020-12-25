@@ -1,5 +1,5 @@
 .header-wrapper {
-    height: 80px;
+    height: 110px;
     background-color: #222222;
     width: 99%;
     margin: 0 auto;
@@ -17,9 +17,9 @@
     align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1180px) {
     .header-wrapper {
-        height: 120px;
+        height: 130px;
     }  
 
     .header-info-wrapper {
