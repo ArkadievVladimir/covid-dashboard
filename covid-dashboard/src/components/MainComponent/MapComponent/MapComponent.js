@@ -66,13 +66,39 @@ function MapComponent({ countries, stat, setCountryHistoryStat, setActiveCountry
     x.legend.useDefaultMarker = true;
     let marker = x.legend.markers.template.children.getIndex(0);
     marker.cornerRadius(12, 12, 12, 12);
-    x.legend.align = "left";
+    x.legend.align = 'left';
+    x.legend.valign = 'bottom';
     x.legend.padding(10, 15, 10, 15);
     x.legend.data = [{
       name: stat, 
     }];
     x.legend.itemContainers.template.clickable = false;
     x.legend.itemContainers.template.focusable = false;
+    // switch between map and globe
+	  var mapGlobeSwitch = x.createChild(am4core.SwitchButton);
+	  mapGlobeSwitch.align = "left"
+	  mapGlobeSwitch.y = 10;
+	  mapGlobeSwitch.leftLabel.text = "Map";
+	  mapGlobeSwitch.rightLabel.text = "Globe";
+	  mapGlobeSwitch.verticalCenter = "top";
+	  mapGlobeSwitch.leftLabel.fill = 'red';
+	  mapGlobeSwitch.rightLabel.fill = 'red';
+	  mapGlobeSwitch.events.on("toggled", function() {
+		  if (mapGlobeSwitch.isActive) {
+			  x.projection = new am4maps.projections.Orthographic;
+        x.backgroundSeries.show();
+        x.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color('rgb(25,35,55)');
+        x.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
+			  x.panBehavior = "rotateLongLat";
+			  polygonSeries.exclude = [];
+		  } else {
+        x.projection = new am4maps.projections.Miller;
+        x.backgroundSeries.hide();
+			  x.panBehavior = "move";
+			  polygonSeries.data = [];
+		  	polygonSeries.exclude = ["AQ"];
+		  }
+	  })
     // MAP CHART zoomControl
     x.zoomControl = new am4maps.ZoomControl();
     x.zoomControl.align = "right";
