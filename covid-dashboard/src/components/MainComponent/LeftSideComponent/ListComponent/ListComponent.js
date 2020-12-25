@@ -51,7 +51,7 @@ const ListComponent = ({countries, stat, activeCountry, setActiveCountry, setCou
         ...item
     };
     return (
-      <li key={state.id} data-selected-country={state.CountryCode} onClick={setCountry} className="cases-wrapper">
+      <li key={state.id} data-selected-country={state.CountryCode} className="cases-wrapper">
         <span className="country-stat-wrapper">{item[stat]}</span>
         <span className="country-wrapper">{state.countryName}</span>
         <div className="country-flag-wrapper"><img src={state.flag} alt="flag" className="country-flag"></img></div>
@@ -78,7 +78,7 @@ const ListComponent = ({countries, stat, activeCountry, setActiveCountry, setCou
         <h2>Cases by Country/ Region/ Sovereignty</h2>
         <SearchPanelComponent 
           onSearch={onSearch}/>
-        <ul className="lists-wrapper">
+        <ul className="lists-wrapper" onClick={setCountry}>
             {countriesList}
         </ul>
     </div>
