@@ -1,0 +1,17 @@
+.rss-logo-wrapper {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+}
+
+.rss-logo-wrapper a {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    width: 30%;
+}

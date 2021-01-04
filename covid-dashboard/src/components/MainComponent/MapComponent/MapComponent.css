@@ -1,0 +1,17 @@
+.map-component-wrapper {
+    position: relative;
+    width: 49%;
+    margin: 0 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 73vh;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+    .map-component-wrapper {
+        height: 67vh !important;
+    } 
+}

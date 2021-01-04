@@ -1,0 +1,35 @@
+.header-wrapper {
+    height: 110px;
+    background-color: #222222;
+    width: 99%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+
+.header-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1180px) {
+    .header-wrapper {
+        height: 130px;
+    }  
+
+    .header-info-wrapper {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header-wrapper {
+        height: 150px;
+        width: 100%;
+    } 
+}

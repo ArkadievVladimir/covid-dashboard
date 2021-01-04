@@ -1,0 +1,12 @@
+.left-side-component-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 73vh;
+}
+
+@media screen and (max-width: 1024px) {
+    .left-side-component-wrapper {
+        height: 67vh;
+    } 
+}

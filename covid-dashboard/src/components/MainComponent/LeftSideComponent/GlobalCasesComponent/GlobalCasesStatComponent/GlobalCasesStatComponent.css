@@ -1,0 +1,75 @@
+.global-case-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.global-case-wrapper h2 {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #bdbdbd;
+}
+
+@media screen and (max-width: 740px) {
+    .global-case-wrapper h2 {
+        font-size: 12px;
+    } 
+}
+
+.stat-wrapper span {
+    display: inline-block;
+    width: 60%;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    color: #e60000;
+}
+
+@media screen and (max-width: 1024px) {
+    .stat-wrapper span {
+        font-size: 22px;
+    } 
+}
+
+@media screen and (max-width: 740px) {
+    .stat-wrapper span {
+        font-size: 18px;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .stat-wrapper span {
+        font-size: 16px;
+    } 
+}
+
+@media screen and (max-width: 560px) {
+    .stat-wrapper span {
+        font-size: 14px;
+    } 
+}
+
+.stat-wrapper {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-wrapper div {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 28px;
+    color: #bdbdbd;
+    padding-bottom: 8px;
+}
+
+.stat-wrapper div:hover {
+    cursor: pointer;
+    color: #e60000;
+}
